@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FanStay · IR-DAY 덱</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+/* 기준: FanStay 디자인 시스템 (toss.im/facepay 실측) — 1920×1080, 좌우 여백 160, 카드 radius 52, 카드 간격 24 */
+:root{
+  --blue:#3182F6;
+  --ink-900:#1E1F21; --ink-800:#36383A; --ink-700:#525355;
+  --label:rgba(22,31,46,.61); --cap:rgba(23,30,41,.47);
+  --soft:#F9F9FB; --line:rgba(7,25,76,.05);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#EDEFF3}
+body{font-family:"Pretendard","Apple SD Gothic Neo",sans-serif;color:var(--ink-800);-webkit-font-smoothing:antialiased;letter-spacing:-.02em}
+
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:#fff;transform-origin:0 0;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,.12)}
+
+/* 슬라이드 프레임 */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;background:#fff;transition:opacity .3s ease,visibility 0s .3s}
+.slide.on{opacity:1;visibility:visible;transition:opacity .3s ease}
+
+/* 공통: 라벨 → 헤드라인 → 보조 문장 → 시각 요소 */
+.kick{position:absolute;left:160px;top:96px;font-size:18px;font-weight:600;line-height:1.2;color:var(--label)}
+.ttl{position:absolute;left:160px;top:132px;font-size:56px;font-weight:700;line-height:1.28;letter-spacing:-1.12px;color:var(--ink-900);white-space:nowrap}
+.sub{position:absolute;left:160px;top:224px;font-size:24px;font-weight:400;line-height:1.6;letter-spacing:-.48px;color:var(--ink-700);white-space:nowrap}
+.foot{position:absolute;left:160px;right:160px;top:1020px;display:flex;justify-content:space-between;font-size:16px;line-height:1.5;color:var(--cap);letter-spacing:0}
+
+/* 등장: 아래에서 20px 올라오며 나타나기, 100ms 간격 */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i,0)*100ms)}
+.slide.on .rv{opacity:1;transform:none}
+.slide:not(.on) .rv{transition-duration:0s;transition-delay:0s}
+
+/* 02 문제 제기 */
+.stat{position:absolute;top:352px;width:788px;height:560px;border-radius:52px;background:var(--soft);padding:56px 52px 52px;display:flex;flex-direction:column}
+.stat.l{left:160px}
+.stat.r{left:972px}
+.stat .lab{font-size:24px;font-weight:700;line-height:1.48;letter-spacing:-.48px;color:var(--ink-800)}
+.stat .num{margin-top:auto;display:flex;align-items:baseline;font-size:200px;font-weight:700;line-height:1;letter-spacing:-6px;color:var(--ink-900);white-space:nowrap}
+.stat .num small{font-size:64px;font-weight:700;letter-spacing:-1.28px;color:#8F959E;margin-left:12px}
+.stat .num.pt{color:var(--blue)}
+.stat .note{margin-top:32px;font-size:20px;font-weight:400;line-height:1.6;letter-spacing:-.4px;color:var(--ink-700)}
+
+/* 01 Main Graphic / 03~14 페이지 번호 */
+.mg{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;font-weight:700;letter-spacing:-1.12px;color:var(--ink-900)}
+.pg{position:absolute;inset:0;display:grid;place-items:center;font-size:96px;font-weight:700;letter-spacing:-2.88px;color:var(--ink-900)}
+.pg span{color:#C9CED6}
+
+@media (prefers-reduced-motion:reduce){
+  .rv{transform:none;transition:opacity .2s linear}
+}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 01 표지 : 디자인 없음 -->
+  <section class="slide" data-no="01">
+    <div class="mg">Main Graphic</div>
+  </section>
+
+  <!-- 02 문제 제기 -->
+  <section class="slide" data-no="02">
+    <div class="kick rv" style="--i:0">문제 제기</div>
+    <h1 class="ttl rv" style="--i:1">공연이 끝난 뒤, 팬은 어디로 갈까요?</h1>
+    <p class="sub rv" style="--i:2">공연 하나를 보러 먼 길을 온 팬은 공연 전후가 가장 불안해요</p>
+
+    <div class="stat l rv" style="--i:3">
+      <div class="lab">2025 방한 외래관광객</div>
+      <div class="num">1,894<small>만 명</small></div>
+      <div class="note">관광 목적 1,582만 명 (83.5%) · 평균 체재 6.5일</div>
+    </div>
+    <div class="stat r rv" style="--i:4">
+      <div class="lab">공연 여행에서 숙박을 계획에 고려해요</div>
+      <div class="num pt">88<small style="color:var(--blue)">%</small></div>
+      <div class="note">해외 라이브 음악 팬 13개국 (Live Nation)</div>
+    </div>
+
+    <div class="foot rv" style="--i:5"><span>FanStay · IR-DAY</span><span>02 / 14</span></div>
+  </section>
+
+  <!-- 03 ~ 14 : 페이지 번호만 -->
+  <section class="slide" data-no="03"><div class="pg">03<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="04"><div class="pg">04<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="05"><div class="pg">05<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="06"><div class="pg">06<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="07"><div class="pg">07<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="08"><div class="pg">08<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="09"><div class="pg">09<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="10"><div class="pg">10<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="11"><div class="pg">11<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="12"><div class="pg">12<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="13"><div class="pg">13<span>&nbsp;/ 14</span></div></section>
+  <section class="slide" data-no="14"><div class="pg">14<span>&nbsp;/ 14</span></div></section>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var cur=0;
+
+  function fit(){
+    var s=Math.min(innerWidth/1920,innerHeight/1080);
+    stage.style.transform='scale('+s+')';
+    stage.style.left=(innerWidth-1920*s)/2+'px';
+    stage.style.top=(innerHeight-1080*s)/2+'px';
+  }
+  function go(n){
+    n=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(el,i){el.classList.toggle('on',i===n)});
+    cur=n;
+    try{history.replaceState(null,'','#'+(n+1))}catch(e){}
+  }
+  addEventListener('resize',fit);
+  addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home')go(0);
+    else if(e.key==='End')go(slides.length-1);
+  });
+  addEventListener('click',function(e){go(e.clientX>innerWidth/2?cur+1:cur-1)});
+  fit();
+  var h=parseInt(location.hash.slice(1),10);
+  go(h>0?h-1:0);
+})();
+</script>
+</body>
+</html>
